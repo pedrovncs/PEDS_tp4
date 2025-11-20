@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LivroTest {
     @Test
-    @DisplayName("Título em branco: deve falhar ao criar livro com título vazio")
+    @DisplayName("deve falhar ao criar livro com título vazio")
     void deveFalharAoCriarLivroComTituloVazio() {
         String tituloVazio = "";
         String autor = "Kurt Vonnegut";
@@ -22,7 +22,7 @@ public class LivroTest {
     }
 
     @Test
-    @DisplayName("Autor em branco: deve falhar ao criar livro com autor nulo")
+    @DisplayName("deve falhar ao criar livro com autor nulo")
     void deveFalharAoCriarLivroComAutorNulo() {
         String titulo = "Breakfast of Champions";
         String autorNulo = null;

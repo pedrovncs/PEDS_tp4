@@ -1,45 +1,44 @@
 package org.example.service;
 
 import org.example.model.Livro;
+import org.example.repository.LivroRepository;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Optional;
 
 public class LivroService {
-    private final Map<Integer, Livro> repositorio = new HashMap<>();
-    private int ultimoId = 0;
 
-    public int gerarId() {
-        return ++ultimoId;
+    private final LivroRepository repository;
+
+    public LivroService() {
+        this.repository = new LivroRepository();
+    }
+
+    public LivroService(LivroRepository repository) {
+        this.repository = repository;
     }
 
     public void adicionar(Livro livro) {
-        repositorio.put(livro.getId(), livro);
-    }
-
-    public Livro buscar(int id) {
-        Livro livro = repositorio.get(id);
-        if (livro == null) {
-            throw new NoSuchElementException("Livro não encontrado");
-        }
-        return livro;
-    }
-
-    public void atualizar(Livro livro) {
-        int id = livro.getId();
-        if (!repositorio.containsKey(id)) {
-            throw new NoSuchElementException("Livro não encontrado");
-        }
-        repositorio.put(livro.getId(), livro);
-    }
-
-    public void remover(int id) {
-        if (!repositorio.containsKey(id)) {
-            throw new NoSuchElementException("Livro não encontrado");
-        }
-        repositorio.remove(id);
+        repository.save(livro);
     }
 
     public Collection<Livro> listar() {
-        return repositorio.values();
+        return repository.findAll();
+    }
+
+    public Optional<Livro> buscarPorId(int id) {
+        return repository.findById(id);
+    }
+
+    public void atualizar(Livro livro) {
+        repository.update(livro);
+    }
+
+    public void remover(int id) {
+        repository.delete(id);
+    }
+
+    public void limparBanco() {
+        repository.deleteAll();
     }
 }
