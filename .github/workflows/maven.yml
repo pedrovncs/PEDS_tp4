@@ -28,5 +28,4 @@ jobs:
         if: always()
         with:
           name: jacoco-report
-          path: /target/site/jacoco/
-          retention-days: 5
+          path: target/site/jacoco/
