@@ -20,13 +20,13 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: build e test
+      - name: build e teste
         run: mvn clean verify
 
-      - name: Upload Relatório de Cobertura JaCoCo
+      - name: upload jacoco
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: jacoco-report
-          path: PEDS_tp4/target/site/jacoco/
+          path: /target/site/jacoco/
           retention-days: 5
